@@ -80,12 +80,8 @@
 			<?php
 				$sql = "SELECT * FROM livres";
 				$result = $conn->query($sql);
-	/*
-				while ($row = $result->fetch_assoc()) {
-					echo "<tr><td>" . $row["id"] . "</td><td>" . $row["titre"] . "</td><td>" . $row["auteur"] . "</td><td>" . $row["categorie"] . "</td><td>" . ($row["disponible"] ? "Oui" : "Non") . "</td></tr>";
-				}
-	*/
-				while ($row = $result->fetch_assoc()) {
+
+				while ($row = $result->fetch_assoc()) {/*
 					echo "<tr>";
 					echo "<td>" . $row["id"] . "</td>";
 					echo "<td>" . $row["titre"] . "</td>";
@@ -94,6 +90,21 @@
 					echo "<td>" . ($row["disponible"] ? "Oui" : "Non") . "</td>";
 					// Add delete button with onclick event
 					echo "<td><button onclick=\"deleteRecord(" . $row["id"] . ")\">&#128465;</button></td>";
+					echo "</tr>";*/
+
+					echo "<tr>";
+					echo "<form method='post' action='edit_book.php'>";
+					echo "<td>" . $row["id"] . "</td>";
+					echo "<td><input type='text' name='titre' value='" . $row["titre"] . "'></td>";
+					echo "<td><input type='text' name='auteur' value='" . $row["auteur"] . "'></td>";
+					echo "<td><input type='text' name='categorie' value='" . $row["categorie"] . "'></td>";
+					echo "<td><input type='checkbox' name='disponible' " . ($row["disponible"] ? "checked" : "") . "></td>";
+					echo "<td>";
+					echo "<button type='submit' name='submit'>Save</button>";
+					echo "<button onclick=\"deleteRecord(" . $row["id"] . ")\">&#128465;</button>";
+					echo "</td>";
+					echo "<input type='hidden' name='id' value='" . $row["id"] . "'>";
+					echo "</form>";
 					echo "</tr>";
 				}
 			?>
