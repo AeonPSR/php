@@ -20,7 +20,7 @@
 		</style>
 	</head>
 	<body>
-
+		<?php include 'menu.php'; ?>
 		<h2>Add New Book</h2>
 		<form action="bdd_tp.php" method="post">
 			<label for="titre">Titre:</label><br>
